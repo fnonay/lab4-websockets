@@ -46,8 +46,10 @@ class ElizaServerTest {
         val client = ElizaOnOpenMessageHandlerToComplete(list, latch)
         container.connectToServer(client, URI("ws://localhost:$port/eliza"))
         latch.await()
-        // assertEquals(XXX, list.size) COMPLETE ME
-        // assertEquals(XXX, list[XXX]) COMPLETE ME
+        assertEquals(3, list.size)
+        assertEquals("Are you sure?", list[3])
+    
+        )
     }
 
 }
@@ -68,8 +70,8 @@ class ElizaOnOpenMessageHandlerToComplete(private val list: MutableList<String>,
     fun onMessage(message: String, session: Session)  {
         list.add(message)
         latch.countDown()
-        // if (COMPLETE ME) {
-        //    COMPLETE ME
-        // }
+        if (latch.count.equals(1)) {
+            session.basicRemote.sendText("no")
+        }
     }
 }
