@@ -46,7 +46,7 @@ class ElizaServerTest {
         val client = ElizaOnOpenMessageHandlerToComplete(list, latch)
         container.connectToServer(client, URI("ws://localhost:$port/eliza"))
         latch.await()
-        assertEquals(3, list.size)
+        assertEquals(4, list.size)
         assertEquals("Are you sure?", list[3])
     
         )
