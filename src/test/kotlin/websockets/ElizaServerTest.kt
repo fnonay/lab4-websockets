@@ -48,8 +48,6 @@ class ElizaServerTest {
         latch.await()
         assertEquals(4, list.size)
         assertEquals("Are you sure?", list[3])
-    
-        )
     }
 
 }
